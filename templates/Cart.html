@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Мої замовлення:</h1>
+<ul>
+    {% for item in cart_items %}
+
+        <li> {{ item.dish.name }} - {{ item.quantity }} шт.
+        {% if item.dish.image %}
+            <img  src="{{ item.dish.image.url }}" alt="Card image" style="width:10%">
+        {% endif %}
+        </li>
+    {% empty %}
+
+    <li>Кошик порожній</li>
+
+    {% endfor %}
+</ul>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+<h1>Категорії :</h1>
+ {% for item in All_dishes %}
+<div class="container mt-3">
+  <h2>Гарніри:</h2>
+
+  <div class="card" style="width:400px">
+    {% if item.image %}
+    <img class="card-img-top" src="{{ item.image.url }}" alt="Card image" style="width:100%">
+    {% endif %}
+    <div class="card-body">
+      <h4 class="card-title">{{item.name}}</h4>
+      <p class="card-text">{{item.price}}</p>
+      <a href="{% url 'cafeApp:add_to_cart' item.pk  %}">Додати до кошика</a>
+
+    </div>
+  </div>
+  <br>
+{% endfor %}
+
+
+{% endblock %}
