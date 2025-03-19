@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Вихід{% endblock %}
+
+{% block content %}
+
+<form action="{% url 'cafeApp:logout' %} method='post' ">
+    {% scrf_token %}
+    <button type="submit">Вийти</button>
+
+{% endblock %}

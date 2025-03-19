@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Редагувати товар у кошику</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit">Зберегти</button>
+    </form>
+
+    <a href="{% url 'cafeApp:shopping-cart' %}">⬅ Повернутися до кошика</a>
+
+    <form action="{% url 'cafeApp:delete-cart-item' cart.id %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" onclick="return confirm('Ви впевнені, що хочете видалити цей товар?')">Видалити товар</button>
+    </form>
+{% endblock %}

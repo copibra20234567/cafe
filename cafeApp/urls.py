@@ -1,5 +1,6 @@
-from cafeApp.views import MainListView, MenuListView, CartView, RegisterView, auth_views, AddToCartView
+from cafeApp.views import MainListView, MenuListView, CartView, RegisterView, LoginViewCustom, AddToCartView, CartUpdateView, CartDeleteView
 from django.urls import path, include
+from django.contrib.auth.views import LogoutView
 app_name = 'cafeApp'
 urlpatterns = [
     path('', MainListView.as_view(), name='main-list'),
@@ -7,5 +8,9 @@ urlpatterns = [
     path('add_to_cart/<int:dish_id>/', AddToCartView.as_view(), name='add_to_cart'),
     path('cart/', CartView.as_view(), name ='shopping-cart'),
     path('register/', RegisterView.as_view(), name='register'),
-    path('login/', auth_views.as_view, name='login')
+    path('login/', LoginViewCustom.as_view(next_page='cafeApp:main-list'), name='login'),
+    path('logout/', LogoutView.as_view(next_page='cafeApp:login'), name='logout'),
+    path('edit_cart/<int:pk>/', CartUpdateView.as_view(), name='edit-cart'),
+    path('cart/delete/<int:pk>/', CartDeleteView.as_view(), name='delete-cart-item'),
+
 ]

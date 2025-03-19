@@ -1,24 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-<h1>Мої замовлення:</h1>
-<ul>
-    {% for item in cart_items %}
-
-        <li> {{ item.dish.name }} - {{ item.quantity }} шт.
-        {% if item.dish.image %}
-            <img  src="{{ item.dish.image.url }}" alt="Card image" style="width:10%">
-        {% endif %}
-        </li>
-    {% empty %}
-
-    <li>Кошик порожній</li>
-
-    {% endfor %}
-</ul>
-
-
-
-
+    <h1>Моя корзина:</h1>
+    <ul>
+        {% for item in cart_items %}
+            <li>
+                {{ item.dish.name }} - {{ item.quantity }} шт.
+                {% if item.dish.image %}
+                    <img src="{{ item.dish.image.url }}" alt="Card image" style="width:10%">
+                {% endif %}
+                <a href="{% url 'cafeApp:edit-cart' item.id %}" style="margin-left: 10px; padding: 5px 10px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Редагувати</a>
+            </li>
+        {% empty %}
+            <li>Кошик порожній</li>
+        {% endfor %}
+    </ul>
 {% endblock %}

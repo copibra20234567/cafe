@@ -13,3 +13,12 @@ class RegisterForm(forms.ModelForm):
         if self.cleaned_data["password"] != self.cleaned_data["password2"]:
             raise forms.ValidationError("Паролі не співпадають")
         return self.cleaned_data["password2"]
+
+
+from django import forms
+from .models import Cart
+
+class CartForm(forms.ModelForm):
+    class Meta:
+        model = Cart
+        fields = ['dish', 'quantity']

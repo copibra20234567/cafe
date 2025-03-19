@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-&)6@j2=-3j0s@30rr76t40coerzrn5wmaa$&&7sm!xsc2)a=f=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -124,7 +124,9 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
     ]
 STORAGES = {
-    # ...
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },

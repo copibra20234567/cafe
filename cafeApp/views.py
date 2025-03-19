@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from .models import Dishes, Cart
-from django.views.generic import ListView, View
+from django.views.generic import ListView, View, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
-from .forms import RegisterForm
+from .forms import RegisterForm, CartForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.urls import reverse_lazy
@@ -77,7 +77,30 @@ class RegisterView(View):
         return render(request, 'register.html', {'form': form})
 
 
-class auth_views(LoginView):
+class LoginViewCustom(LoginView):
     template_name = 'login.html'  # Вказуємо власний шаблон
     redirect_authenticated_user = True  # Якщо користувач вже увійшов, перенаправити
-# Create your views here.
+
+
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from .models import Cart
+from .forms import CartForm  # Переконайся, що є форма!
+
+
+class CartUpdateView(UpdateView):
+    model = Cart
+    form_class = CartForm  # Використовуємо форму
+    template_name = "edit_cart.html"
+
+    def get_success_url(self):
+        return reverse_lazy('cafeApp:shopping-cart')  # Перенаправлення після редагування
+
+class CartDeleteView(LoginRequiredMixin, DeleteView):
+    model = Cart
+    template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('cafeApp:shopping-cart')  # Перенаправлення після видалення
+    context_object_name = "cart"
+    def get_queryset(self):
+        """Дозволяємо видаляти тільки власні товари в кошику"""
+        return Cart.objects.filter(user=self.request.user)
