@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Оформлення замовлення</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Django самостійно відобразить поля форми -->
+    <button type="submit">Оформити замовлення</button>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2 style="text-align: center; margin-bottom: 20px;">Ваші замовлення</h2>
+
+{% if orders %}
+    <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center;">
+        {% for order in orders %}
+        <div style="width: 80%; max-width: 600px; border: 1px solid #ddd; border-radius: 10px; padding: 15px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1);">
+            <h3>Замовлення №{{ order.id }}</h3>
+            <p><strong>Ім'я:</strong> {{ order.full_name }}</p>
+            <p><strong>Статус:</strong> {{ order.get_status_display }}</p>
+            <p><strong>Дата замовлення:</strong> {{ order.created_at|date:"d.m.Y H:i" }}</p>
+            <p><strong>Адреса доставки:</strong> {{ order.address }}</p>
+            <p><strong>Замовлені страви:</strong></p>
+            <ul>
+                {% for cart_item in order.user.carts.all %}
+                    <li>{{ cart_item.dish.name }} ({{ cart_item.quantity }} шт.)</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p style="text-align: center; font-size: 18px; color: #888;">Тут будуть з'являтись замовлення</p>
+{% endif %}
+
+{% endblock %}

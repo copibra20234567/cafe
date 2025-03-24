@@ -30,6 +30,7 @@ class Order(models.Model):
     ]
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="orders", null=True, blank=True)
+    carts = models.ManyToManyField('Cart', verbose_name="Страви у замовленні")
     full_name = models.CharField(max_length=255, verbose_name="Повне ім'я")
     address = models.TextField(verbose_name="Адреса")
     credit_card = models.CharField(max_length=16, verbose_name="Кредитна карта")  # Додаємо маску для безпеки

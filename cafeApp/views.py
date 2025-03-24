@@ -1,13 +1,16 @@
 from django.shortcuts import render
-from .models import Dishes, Cart
-from django.views.generic import ListView, View, UpdateView, DeleteView
+from .models import Dishes, Cart, Order
+from django.views.generic import ListView, View, UpdateView, DeleteView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
-from .forms import RegisterForm, CartForm
+from .forms import RegisterForm, CartForm, OrderForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth import login
 from django.urls import reverse_lazy
-
+from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from .models import Cart
+from .forms import CartForm
 class MainListView(ListView):
     model = Dishes
     template_name = "MainMenu.html"
@@ -82,10 +85,7 @@ class LoginViewCustom(LoginView):
     redirect_authenticated_user = True  # Якщо користувач вже увійшов, перенаправити
 
 
-from django.views.generic import UpdateView
-from django.urls import reverse_lazy
-from .models import Cart
-from .forms import CartForm  # Переконайся, що є форма!
+
 
 
 class CartUpdateView(UpdateView):
@@ -104,3 +104,26 @@ class CartDeleteView(LoginRequiredMixin, DeleteView):
     def get_queryset(self):
         """Дозволяємо видаляти тільки власні товари в кошику"""
         return Cart.objects.filter(user=self.request.user)
+
+
+
+
+class OrderCreateView(LoginRequiredMixin, CreateView):
+    model = Order
+    form_class = OrderForm  # Використовуємо форму для замовлення
+    template_name = "order_create.html"
+    success_url = reverse_lazy("cafeApp:order-list")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user  # Прив'язуємо замовлення до користувача
+        Cart.objects.filter(user=self.request.user).delete()  # Очищаємо кошик
+        return super().form_valid(form)
+
+
+class OrderListView(LoginRequiredMixin, ListView):
+    model = Order
+    template_name = "orders_list.html"
+    context_object_name = "orders"
+
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
