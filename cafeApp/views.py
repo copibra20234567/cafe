@@ -22,6 +22,12 @@ class MenuListView(ListView):
     template_name = "DishesList.html"
     context_object_name = "All_dishes"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["garnishes"] = Dishes.objects.filter(category="garnish")
+        context["desserts"] = Dishes.objects.filter(category="dessert")
+        return context
+
 
 
 class CartView(ListView):
@@ -33,7 +39,7 @@ class CartView(ListView):
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            return Cart.objects.filter(user=self.request.user)
+            return Cart.objects.filter(user=self.request.user, status = True)
         else:
             session_key = self.request.session.session_key
             return Cart.objects.filter(session_key=session_key)
@@ -116,8 +122,11 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user  # Прив'язуємо замовлення до користувача
-        Cart.objects.filter(user=self.request.user).delete()  # Очищаємо кошик
-        return super().form_valid(form)
+        carts = Cart.objects.filter(user=self.request.user, status=True)
+        abc = super().form_valid(form)
+        self.object.carts.set(carts)
+        Cart.objects.filter(user=self.request.user, status=True).update(status=False)  # Очищаємо кошик
+        return abc
 
 
 class OrderListView(LoginRequiredMixin, ListView):

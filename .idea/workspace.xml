@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc932405-5d64-4e26-8f82-14b184015444" name="Changes" comment="" />
+    <list default="true" id="bc932405-5d64-4e26-8f82-14b184015444" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/mediafiles/dishes/chocolateicecream.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mediafiles/dishes/kartoplyaposelyanski.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mediafiles/dishes/plombiricecream.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mediafiles/dishes/strawberryicecream2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/chocolateicecream.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/kartoplyaposelyanski.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/plombiricecream.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/strawberryicecream2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafeApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/cafeApp/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafeApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/cafeApp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/DishesList.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/DishesList.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/orders_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/orders_list.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,14 +44,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/cafe/static/images&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/cafe/static/images"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\cafe\static\images" />
@@ -44,6 +59,7 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\cafe\static\images" />
+      <recent name="D:\cafe\mediafiles\dishes" />
       <recent name="D:\cafe" />
       <recent name="D:\cafe\static" />
     </key>

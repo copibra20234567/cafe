@@ -14,7 +14,7 @@
             <p><strong>Адреса доставки:</strong> {{ order.address }}</p>
             <p><strong>Замовлені страви:</strong></p>
             <ul>
-                {% for cart_item in order.user.carts.all %}
+                {% for cart_item in order.carts.all %}
                     <li>{{ cart_item.dish.name }} ({{ cart_item.quantity }} шт.)</li>
                 {% endfor %}
             </ul>
