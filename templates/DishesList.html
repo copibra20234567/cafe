@@ -7,35 +7,77 @@
 <h1>Категорії:</h1>
 
 <h2 class="container mt-3">Гарніри:</h2>
-{% for item in garnishes %}
-<div class="container mt-3">
-  <div class="card" style="width:400px">
+<div class="container garnishes-container">
+  {% for item in garnishes %}
+  <div class="card">
     {% if item.image %}
     <img class="card-img-top" src="{{ item.image.url }}" alt="Card image" style="width:100%">
     {% endif %}
     <div class="card-body">
       <h4 class="card-title">{{ item.name }}</h4>
-      <p class="card-text">{{ item.price }}</p>
-      <a href="{% url 'cafeApp:add_to_cart' item.pk %}">Додати до кошика</a>
+      <p class="card-text">{{ item.description }}</p>
+      <div class="card-footer">
+        <p class="price">{{ item.price }}</p>
+        <a href="{% url 'cafeApp:add_to_cart' item.pk %}" class="btn btn-primary">Додати до кошика</a>
+      </div>
     </div>
   </div>
+  {% endfor %}
 </div>
-{% endfor %}
 
 <h2 class="container mt-3">Десерти:</h2>
-{% for item in desserts %}
-<div class="container mt-3">
-  <div class="card" style="width:400px">
+<div class="container desserts-container">
+  {% for item in desserts %}
+  <div class="card">
     {% if item.image %}
     <img class="card-img-top" src="{{ item.image.url }}" alt="Card image" style="width:100%">
     {% endif %}
     <div class="card-body">
       <h4 class="card-title">{{ item.name }}</h4>
-      <p class="card-text">{{ item.price }}</p>
-      <a href="{% url 'cafeApp:add_to_cart' item.pk %}">Додати до кошика</a>
+      <p class="card-text">{{ item.description }}</p>
+      <div class="card-footer">
+        <p class="price">{{ item.price }}</p>
+        <a href="{% url 'cafeApp:add_to_cart' item.pk %}" class="btn btn-primary">Додати до кошика</a>
+      </div>
     </div>
   </div>
+  {% endfor %}
 </div>
-{% endfor %}
+
+<style>
+  .container {
+    display: flex;
+    flex-wrap: wrap; /* Перенос елементів на новий рядок, якщо не вистачає місця */
+    gap: 10px; /* Відстань між елементами */
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column; /* Розташовує елементи всередині картки вертикально */
+    justify-content: space-between; /* Розтягує елементи так, щоб ціна була внизу */
+    width: 400px;
+    height: 100%; /* Забезпечує максимальну висоту картки */
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Дає можливість тілу картки заповнювати доступний простір */
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto; /* Виштовхує footer внизу */
+  }
+
+  .price {
+    font-weight: bold;
+  }
+
+  .btn {
+    align-self: flex-end; /* Кнопка вирівнюється по правому краю */
+  }
+</style>
 
 {% endblock %}

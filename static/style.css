@@ -1,3 +1,8 @@
-.b {
-collor = grey;
+.container {
+  display: flex;
+  justify-content: flex-start; /* вирівнювання елементів по горизонталі */
+}
+
+.element {
+  margin-right: 10px; /* відстань між елементами */
 }
