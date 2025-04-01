@@ -26,6 +26,7 @@ class MenuListView(ListView):
         context = super().get_context_data(**kwargs)
         context["garnishes"] = Dishes.objects.filter(category="garnish")
         context["desserts"] = Dishes.objects.filter(category="dessert")
+        context['drinks'] = Dishes.objects.filter(category='drinks')
         return context
 
 
