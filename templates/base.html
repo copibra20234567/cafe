@@ -46,14 +46,7 @@
             {% endif %}
 
         </li>
-        <li class="nav-item">
-            {% if user.is_authenticated %}
-                <form action="{% url 'cafeApp:logout' %}" method="post" >
-                    {% csrf_token %}
-                    <button class="b" >Вийти</button>
-                </form>
-            {% endif %}
-        </li>
+
         <li class="nav-item">
             {% if user.is_authenticated %}
                 <a class="nav-link" href="{% url 'cafeApp:order-list' %}" class="btn btn-secondary" class="cart">Мої замовлення</a>
@@ -61,6 +54,14 @@
         </li>
 
 
+        <li class="nav-item">
+            {% if user.is_authenticated %}
+                <form action="{% url 'cafeApp:logout' %}" method="post" >
+                    {% csrf_token %}
+                    <button class="btn btn-secondary" >Вийти</button>
+                </form>
+            {% endif %}
+        </li>
 
         </li>
       </ul>

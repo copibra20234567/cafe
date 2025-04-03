@@ -45,3 +45,6 @@ class Order(models.Model):
     credit_card = models.CharField(max_length=16, verbose_name="Кредитна карта")  # Додаємо маску для безпеки
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending', verbose_name="Статус")
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+
